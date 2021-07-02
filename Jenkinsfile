@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'npm start test -- -- coverage'
+               'npm start test -- -- coverage'
             }
         }
     }
