@@ -1,10 +1,25 @@
-pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-               sh 'npm run test -- --coverage'
-            }
+node {
+    def app
+
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
+
+        checkout scm
+    }
+
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("react-test")
+    }
+
+    stage('Test image') {
+        /* Ideally, we would run a test framework against our image.
+         * Just an example */
+
+        app.inside {
+            sh 'npm run test -- --coverage'
         }
     }
 }
