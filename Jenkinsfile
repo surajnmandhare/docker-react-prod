@@ -19,7 +19,7 @@ node {
          * Just an example */
 
         app.inside {
-            sh 'npm run test -- --coverage'
+            'npm run test -- --coverage'
         }
     }
 }
